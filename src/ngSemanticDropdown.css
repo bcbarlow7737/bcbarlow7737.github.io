@@ -1,3 +1,4 @@
 .menu-visible{
     display: block !important;
+    z-index: 9999;
 }
