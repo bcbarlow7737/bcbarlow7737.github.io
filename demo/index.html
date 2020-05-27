@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+
+        <title>Demo</title>
+    </head>
+    <body ng-app="app" ng-controller="mainController">
+        <div class="ui segment">
+            <ng-dropdown 
+                selected="selectedOption" 
+                options="phones"
+                default-text="Pick a phone"
+                label-Field="name"
+                loading="arrayLoading"
+                multiple="false"
+                disabled="disableDD" 
+                change="ddChanged()">
+            </ng-dropdown>
+        </div>
+        <button type="button" class="ui button" ng-click="selectedOption=null">Clear</button>
+        <button type="button" class="ui button" ng-click="disableDD = !disableDD">Disable</button>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="/src/ngSemanticDropdown.js"></script>
+    <script>
+        var app = angular.module('app', ['ngSemanticDirectives']);
+
+        app.controller('mainController', function mainController($scope){
+            $scope.phones = [
+                {
+                    id: 1,
+                    name: 'Nexus S',
+                    snippet: 'Fast just got faster with Nexus S.'
+                }, {
+                    id: 2,
+                    name: 'Motorola XOOM™ with Wi-Fi',
+                    snippet: 'The Next, Next Generation tablet.'
+                }, {
+                    id: 3,
+                    name: 'MOTOROLA XOOM™',
+                    snippet: 'The Next, Next Generation tablet.'
+                }
+            ];
+            $scope.ddChanged = function(){
+                console.info('ng-dropdown changed values');
+            }
+        });
+    </script>
+    <script t></script>
+</html>
