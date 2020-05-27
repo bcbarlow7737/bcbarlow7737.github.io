@@ -3,6 +3,7 @@ angular.module('ngSemanticDirectives', [])
     function () {
         return {
             restrict: 'E',
+            replace: true,
             scope: {
                 selected: '=',
                 options: '=',
@@ -17,24 +18,21 @@ angular.module('ngSemanticDirectives', [])
             },
             //templateUrl: 'ngDropDown.html',
             template:`
-            <div class="ui dropdown selection" ng-class="{'loading' : loading, 'disabled' : disabled, 'multiple' : multiple, 'active visible' : isActive }" tabindex="0" ng-focus="onFocus()" ng-blur="onBlur()">
-            <i class="dropdown icon"></i>
-            <div class="default text" ng-if="(!multiple && !selected) || (multiple && !selected.length)" ng-bind="defaultText"></div>
-            <div class="text" ng-if="selected && !multiple" ng-bind="selected[labelField]"></div>
-            <a ng-if="selected && selected.length" style="display: inline-block !important;" class="ui label transition visible" ng-repeat="item in selected">
-                {{item[labelField]}}
-                <i class="delete icon" ng-click="selected.splice($index, 1)"></i>
-            </a>
-            <div class="menu transition" ng-class="isActive ? 'visible menu-visible' : 'hidden'" >
-                <div class="item" ng-click="selectOption(item)" ng-repeat="item in options | filter:isUnselected" ng-bind="item[labelField]"></div>
+            <div class="ui dropdown selection ng-class:classes" ng-class="{'loading' : loading, 'disabled' : disabled, 'multiple' : multiple, 'active visible' : isActive }" tabindex="0" ng-focus="onFocus()" ng-blur="onBlur()">
+                <i class="dropdown icon"></i>
+                <div class="default text" ng-if="(!multiple && !selected) || (multiple && !selected.length)" ng-bind="defaultText"></div>
+                <div class="text" ng-if="selected && !multiple" ng-bind="selected[labelField]"></div>
+                <a ng-if="selected && selected.length" style="display: inline-block !important;" class="ui label transition visible" ng-repeat="item in selected">
+                    {{item[labelField]}}
+                    <i class="delete icon" ng-click="selected.splice($index, 1)"></i>
+                </a>
+                <div class="menu transition" ng-class="isActive ? 'visible menu-visible' : 'hidden'" >
+                    <div class="item" ng-click="selectOption(item)" ng-repeat="item in options | filter:isUnselected" ng-bind="item[labelField]"></div>
+                </div>
             </div>
-        </div>
-        <style>
-            .menu-visible{
-                display: block !important;
-            }
-        </style>`,
+            `,
             link: function (scope, elem, attrs) {
+                //scope.classes = attrs.class;
                 if(scope.multiple && !Array.isArray(scope.selected)){
                     scope.selected = [];
                 }

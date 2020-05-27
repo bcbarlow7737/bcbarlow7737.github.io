@@ -1,12 +1,57 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+        <link rel="stylesheet" href="/src/ngSemanticDropdown.css" />
+        <title>NgSemanticDropDown Demo</title>
+        <style type="text/css">
 
-        <title>Demo</title>
+            .hidden.menu {
+              display: none;
+            }
+        
+            .masthead.segment {
+              min-height: 550px;
+              padding: 1em 0em;
+            }
+            .masthead .logo.item img {
+              margin-right: 1em;
+            }
+            .masthead .ui.menu .ui.button {
+              margin-left: 0.5em;
+            }
+            .masthead h1.ui.header {
+              margin-top: 1.8em;
+              margin-bottom: 0em;
+              font-size: 4em;
+              font-weight: normal;
+            }
+            .masthead h2 {
+              font-size: 1.7em;
+              font-weight: normal;
+            }
+        </style>
     </head>
     <body ng-app="app" ng-controller="mainController">
+        <div class="ui large top fixed menu">
+            <div class="ui container">
+              <a class="active item">Home</a>
+            </div>
+          </div>
+        <div class="ui inverted vertical masthead center aligned segment">
+            <div class="ui container">
+                <div class="ui text container">
+                    <h1 class="ui inverted header">
+                        NgSemanticDropDown Demo
+                    </h1>
+                    <h2>AngularJS directive for Semantic UI Dropdown Module</h2>
+                    <a class="ui huge primary labeled icon button" href="https://github.com/bcbarlow7737/ngSemanticDropDown">View Project on GitHub <i class="github icon"></i></a>
+                </div>
+            </div>
+        </div>
         <div class="ui segment">
+            <div class="ui medium header">Basic Dropdown</div>
             <ng-dropdown 
+                class="fluid"
                 selected="selectedOption" 
                 options="phones"
                 default-text="Pick a phone"
@@ -16,13 +61,31 @@
                 disabled="disableDD" 
                 change="ddChanged()">
             </ng-dropdown>
+            <div class="ui divider"></div>
+            <button type="button" class="ui button" ng-click="selectedOption=null">Clear Selected</button>
+            <button type="button" class="ui button" ng-click="disableDD = !disableDD">Toggle Disable</button>
+            <button type="button" class="ui button" ng-click="arrayLoading = !arrayLoading">Toggle Loading</button>
+            <div class="ui divider"></div>
+            <div class="ui medium header">Multiple Selection Dropdown</div>
+            <ng-dropdown 
+                class="fluid"
+                selected="multiSelectedOption" 
+                options="phones"
+                default-text="Pick a phone"
+                label-Field="name"
+                loading="multiArrayLoading"
+                multiple="true"
+                disabled="multiDisableDD">
+            </ng-dropdown>
+            <div class="ui divider"></div>
+            <button type="button" class="ui button" ng-click="multiSelectedOption=null">Clear Selected</button>
+            <button type="button" class="ui button" ng-click="multiDisableDD = !multiDisableDD">Toggle Disable</button>
+            <button type="button" class="ui button" ng-click="multiArrayLoading = !multiArrayLoading">Toggle Loading</button>
         </div>
-        <button type="button" class="ui button" ng-click="selectedOption=null">Clear</button>
-        <button type="button" class="ui button" ng-click="disableDD = !disableDD">Disable</button>
-        <a class="ui right labeled icon button" href="https://github.com/bcbarlow7737/ngSemanticDropDown">
-            <i class="github icon"></i>
-            View Project on GitHub
-        </a>
+        <div class="ui container">
+            Code licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a>
+        </div>
+        
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
     <script src="/src/ngSemanticDropdown.js"></script>
