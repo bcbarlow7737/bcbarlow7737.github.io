@@ -16,7 +16,7 @@ angular.module('ngSemanticDirectives', [])
                 labelField: '@'
             },
             template:`
-            <div class="ui dropdown selection ng-class:classes" ng-class="{'loading' : loading, 'disabled' : disabled, 'multiple' : multiple, 'active visible' : isActive }" tabindex="0" ng-focus="onFocus()" ng-blur="onBlur()">
+            <div class="ui dropdown selection" ng-class="{'loading' : loading, 'disabled' : disabled, 'multiple' : multiple, 'active visible' : isActive, classes : classes }" tabindex="0" ng-focus="onFocus()" ng-blur="onBlur()">
                 <i class="dropdown icon"></i>
                 <div class="default text" ng-if="(!multiple && !selected) || (multiple && !selected.length)" ng-bind="defaultText"></div>
                 <div class="text" ng-if="selected && !multiple" ng-bind="selected[labelField]"></div>
@@ -38,7 +38,6 @@ angular.module('ngSemanticDirectives', [])
                         if((!scope.multiple && scope.selected) || (scope.multiple && !scope.selected.length)){
                             scope.change();
                         }
-                        
                     })
                 }
                 scope.changeActive = function(){
