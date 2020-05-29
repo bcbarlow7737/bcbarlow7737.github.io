@@ -44,43 +44,43 @@
                         NgSemanticDropDown Demo
                     </h1>
                     <h2>AngularJS directive for Semantic UI Dropdown Module</h2>
-                    <a class="ui huge primary labeled icon button" href="https://github.com/bcbarlow7737/ngSemanticDropDown">View Project on GitHub <i class="github icon"></i></a>
+                    <a class="ui huge primary labeled icon button" target="_blank" href="https://github.com/bcbarlow7737/ngSemanticDropDown">View Project on GitHub <i class="github icon"></i></a>
                 </div>
             </div>
         </div>
         <div class="ui segment">
             <div class="ui medium header">Basic Dropdown</div>
-            <ng-dropdown 
+            <s-ng-dropdown 
                 class="fluid"
-                selected="selectedOption" 
+                selected="vm.selectedOption" 
                 options="phones"
                 default-text="Pick a phone"
                 label-Field="name"
-                loading="arrayLoading"
+                loading="vm.arrayLoading"
                 multiple="false"
-                disabled="disableDD" 
+                disabled="vm.disableDD" 
                 change="ddChanged()">
-            </ng-dropdown>
+            </s-ng-dropdown>
             <div class="ui divider"></div>
-            <button type="button" class="ui button" ng-click="selectedOption=null">Clear Selected</button>
-            <button type="button" class="ui button" ng-click="disableDD = !disableDD">Toggle Disable</button>
-            <button type="button" class="ui button" ng-click="arrayLoading = !arrayLoading">Toggle Loading</button>
+            <button type="button" class="ui button" ng-click="vm.selectedOption=null">Clear Selected</button>
+            <button type="button" class="ui button" ng-click="toggle('single_disable')">Toggle Disable</button>
+            <button type="button" class="ui button" ng-click="toggle('single_loading')">Toggle Loading</button>
             <div class="ui divider"></div>
             <div class="ui medium header">Multiple Selection Dropdown</div>
-            <ng-dropdown 
+            <s-ng-dropdown 
                 class="fluid"
-                selected="multiSelectedOption" 
+                selected="vm.multiSelectedOption" 
                 options="phones"
-                default-text="Pick a phone"
+                default-text="Pick phone(s)"
                 label-Field="name"
-                loading="multiArrayLoading"
+                loading="vm.multiArrayLoading"
                 multiple="true"
-                disabled="multiDisableDD">
-            </ng-dropdown>
+                disabled="vm.multiDisableDD">
+            </s-ng-dropdown>
             <div class="ui divider"></div>
-            <button type="button" class="ui button" ng-click="multiSelectedOption=null">Clear Selected</button>
-            <button type="button" class="ui button" ng-click="multiDisableDD = !multiDisableDD">Toggle Disable</button>
-            <button type="button" class="ui button" ng-click="multiArrayLoading = !multiArrayLoading">Toggle Loading</button>
+            <button type="button" class="ui button" ng-click="vm.multiSelectedOption=[]">Clear Selected</button>
+            <button type="button" class="ui button" ng-click="toggle('multi_disable')">Toggle Disable</button>
+            <button type="button" class="ui button" ng-click="toggle('multi_loading')">Toggle Loading</button>
         </div>
         <div class="ui container">
             Code licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a>
@@ -89,28 +89,5 @@
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
     <script src="/src/ngSemanticDropdown.js"></script>
-    <script>
-        var app = angular.module('app', ['ngSemanticDirectives']);
-
-        app.controller('mainController', function mainController($scope){
-            $scope.phones = [
-                {
-                    id: 1,
-                    name: 'Nexus S',
-                    snippet: 'Fast just got faster with Nexus S.'
-                }, {
-                    id: 2,
-                    name: 'Motorola XOOM™ with Wi-Fi',
-                    snippet: 'The Next, Next Generation tablet.'
-                }, {
-                    id: 3,
-                    name: 'MOTOROLA XOOM™',
-                    snippet: 'The Next, Next Generation tablet.'
-                }
-            ];
-            $scope.ddChanged = function(){
-                console.info('ng-dropdown changed values');
-            }
-        });
-    </script>
+    <script src="app.js"></script>
 </html>

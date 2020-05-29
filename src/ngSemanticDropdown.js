@@ -1,5 +1,5 @@
 angular.module('ngSemanticDirectives', [])
-.directive('ngDropdown', [
+.directive('sNgDropdown', [
     function () {
         return {
             restrict: 'E',
@@ -14,9 +14,7 @@ angular.module('ngSemanticDirectives', [])
                 loading: '=',
                 defaultText: '@',
                 labelField: '@'
-
             },
-            //templateUrl: 'ngDropDown.html',
             template:`
             <div class="ui dropdown selection ng-class:classes" ng-class="{'loading' : loading, 'disabled' : disabled, 'multiple' : multiple, 'active visible' : isActive }" tabindex="0" ng-focus="onFocus()" ng-blur="onBlur()">
                 <i class="dropdown icon"></i>
@@ -32,7 +30,6 @@ angular.module('ngSemanticDirectives', [])
             </div>
             `,
             link: function (scope, elem, attrs) {
-                //scope.classes = attrs.class;
                 if(scope.multiple && !Array.isArray(scope.selected)){
                     scope.selected = [];
                 }
@@ -55,6 +52,8 @@ angular.module('ngSemanticDirectives', [])
                     if(!scope.multiple){
                         scope.selected = item;
                         scope.isActive = false;
+                        let activeElement = document.activeElement;
+                        activeElement.blur();
                     }
                     else{
                         scope.selected.push(item);
